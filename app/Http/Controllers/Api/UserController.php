@@ -33,19 +33,18 @@ class UserController extends Controller
             'password' => ['required', 'min:5', 'max:20']
         ]);
 
-        // mencari username di tabel user 
+ 
         $existingUser = User::where('username', $request->username)->first();
             
-        // mengecek dengan if apakah hasilnya true atau false 
-        // return response dengan message username already exists (manual)
+      
         if($existingUser){
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Username sudah tersedia'
+                'message' => 'Username alredy exist'
             ], 400);
         }
 
-        // kondisi apabila validasi gagal, (otomatis)
+        
         if($validated->fails()){
             return response()->json([
                 'status' => 'invalid',
@@ -53,7 +52,7 @@ class UserController extends Controller
             ], 400);
         }
 
-        // jika validasi berhasil, hash password dan buat akunnya
+    
         $data_user = $validated->validate();
         $data_user['password'] = Hash::make($data_user['password']);
 
@@ -86,14 +85,17 @@ class UserController extends Controller
             'password' => ['required', 'min:5', 'max:20']
         ]);
 
-        // if($validated->fails()){
-        //     return response()->json([
-        //         'status' => 'invalid',
-        //         'message' => $validated->errors(),
-        //     ], 400);
-        // }
+
 
         $user = User::find($id);
+
+          if($user){
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Username alredy exist'
+            ], 400);
+        }
+
 
         if(!$user){
             return response()->json([

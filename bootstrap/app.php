@@ -20,7 +20,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->Alias([
             'admin' => AdminOnly::class,
-            'user' => UserOnly::class,
             'dev' => DevOnly::class,
         ]);
     })
