@@ -125,7 +125,7 @@ class AuthController extends Controller
             ], 200);
         }
 
-        // jika user, admin dan dev tidak ditemukan
+        
         return response()->json([
             'status' => 'invalid',
             'message' => 'wrong username or password',
@@ -138,7 +138,7 @@ class AuthController extends Controller
         try {
             $user = $request->user();
 
-            // cek apakah user ada / login
+            
             if($user === null){
                 return response()->json([
                     'status' => 'failed',
@@ -146,7 +146,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            // hapus token
+           
             $user->currentAccessToken()->delete();
 
             return response()->json([

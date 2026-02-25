@@ -35,11 +35,9 @@ class GameController extends Controller
             
         ]);
 
-        // mencari username di tabel user 
         $existingGame = Game::where('title', $request->title)->first();
             
-        // mengecek dengan if apakah hasilnya true atau false 
-        // return response dengan message username already exists (manual)
+
         if($existingGame){
             return response()->json([
                 'status' => 'failed',
@@ -59,13 +57,12 @@ class GameController extends Controller
 
          $slug = $request->title;
 
-        //  membuat huruf besar menjadi kecil 
          $slug = Str::lower($slug);
-        //  membuat spasi menjadi -
+
          $slug = strtr($slug, ' ', '-');
 
         $data_game["slug"] = $slug;
-        // logger('melihat data game', [$data_game]);
+        // logger('liht data game', [$data_game]);
 
          $game = Game::create($data_game);
 

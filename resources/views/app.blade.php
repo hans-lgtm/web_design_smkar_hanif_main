@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Laravel + Vue</title>
+    <title>App</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
-        <example></example>
-    </div>
+    <div id="app"></div>
 </body>
 </html>
